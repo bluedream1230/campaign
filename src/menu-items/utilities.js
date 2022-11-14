@@ -12,55 +12,97 @@ const icons = {
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
 const utilities = {
-    id: 'utilities',
-    title: 'Utilities',
     type: 'group',
     children: [
         {
-            id: 'util-typography',
-            title: 'Typography',
-            type: 'item',
-            url: '/utils/util-typography',
+            title: 'Dashboard',
+            type: 'collapse',
+            url: '',
             icon: icons.IconTypography,
-            breadcrumbs: false
+            breadcrumbs: false,
+            children: [
+                {
+                    title: 'Single Report View',
+                    type: 'item',
+                    url: '/dashboard/single-report',
+                    breadcrumbs: false
+                },
+                {
+                    title: 'Export Report',
+                    type: 'item',
+                    url: '/dashboard/export-report',
+                    breadcrumbs: false
+                },
+                {
+                    title: 'Generate Custom Report',
+                    type: 'item',
+                    url: '/dashboard/generate-report',
+                    breadcrumbs: false
+                }
+            ]
         },
         {
-            id: 'util-color',
-            title: 'Color',
+            title: 'Launch',
             type: 'item',
-            url: '/utils/util-color',
+            url: '/launch',
             icon: icons.IconPalette,
             breadcrumbs: false
         },
         {
-            id: 'util-shadow',
-            title: 'Shadow',
-            type: 'item',
-            url: '/utils/util-shadow',
-            icon: icons.IconShadow,
-            breadcrumbs: false
-        },
-        {
-            id: 'icons',
-            title: 'Icons',
+            title: 'Campaigns',
             type: 'collapse',
-            icon: icons.IconWindmill,
+            url: '',
+            icon: icons.IconTypography,
+            breadcrumbs: false,
             children: [
                 {
-                    id: 'tabler-icons',
-                    title: 'Tabler Icons',
+                    title: 'Single Campaign',
                     type: 'item',
-                    url: '/icons/tabler-icons',
+                    url: '/dashboard/single-campaign',
                     breadcrumbs: false
                 },
                 {
-                    id: 'material-icons',
-                    title: 'Material Icons',
+                    title: 'View Performance',
                     type: 'item',
-                    url: '/icons/material-icons',
+                    url: '/dashboard/view-performance',
                     breadcrumbs: false
                 }
             ]
+        },
+        {
+            title: 'Prizes',
+            type: 'item',
+            url: '/prizes',
+            icon: icons.IconPalette,
+            breadcrumbs: false
+        },
+        {
+            title: 'Games',
+            type: 'item',
+            url: '/games',
+            icon: icons.IconPalette,
+            breadcrumbs: false
+        },
+        {
+            title: 'Users',
+            type: 'item',
+            url: '/users',
+            icon: icons.IconPalette,
+            breadcrumbs: false
+        },
+        {
+            title: 'Setting',
+            type: 'item',
+            url: '/setting',
+            icon: icons.IconPalette,
+            breadcrumbs: false
+        },
+        {
+            title: 'Logout',
+            type: 'item',
+            url: '/logout',
+            icon: icons.IconPalette,
+            breadcrumbs: false
         }
     ]
 };

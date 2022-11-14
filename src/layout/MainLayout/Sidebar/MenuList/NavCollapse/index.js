@@ -67,7 +67,7 @@ const NavCollapse = ({ menu, level }) => {
                     py: level > 1 ? 1 : 1.25,
                     pl: `${level * 24}px`
                 }}
-                selected={selected === menu.id}
+                // selected={selected === menu.id}
                 onClick={handleClick}
             >
                 <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>

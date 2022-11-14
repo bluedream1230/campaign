@@ -9,10 +9,11 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { BrowserView, MobileView } from 'react-device-detect';
 
 // project imports
-import MenuList from './MenuList';
+import { MenuList, LogoutComponent } from './MenuList';
 import LogoSection from '../LogoSection';
-import MenuCard from './MenuCard';
-import { drawerWidth } from 'store/constant';
+import { drawerWidth, appDrawerWidth, quaterMaxWidth } from 'store/constant';
+
+import { Divider } from '@mui/material';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -22,11 +23,6 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
 
     const drawer = (
         <>
-            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-                    <LogoSection />
-                </Box>
-            </Box>
             <BrowserView>
                 <PerfectScrollbar
                     component="div"
@@ -37,22 +33,24 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     }}
                 >
                     <MenuList />
-                    <MenuCard />
+                    <Divider sx={{ mt: 0.25, mb: 1.25, opacity: 0.3, paddingTop: '90px' }} />
+                    <LogoutComponent />
                 </PerfectScrollbar>
             </BrowserView>
-            <MobileView>
-                <Box sx={{ px: 2 }}>
-                    <MenuList />
-                    <MenuCard />
-                </Box>
-            </MobileView>
         </>
     );
 
     const container = window !== undefined ? () => window.document.body : undefined;
 
     return (
-        <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
+        <Box
+            component="nav"
+            sx={{
+                flexShrink: { md: 0 },
+                width: matchUpMd ? appDrawerWidth : 'auto'
+            }}
+            aria-label="mailbox folders"
+        >
             <Drawer
                 container={container}
                 variant={matchUpMd ? 'persistent' : 'temporary'}
@@ -61,12 +59,14 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                 onClose={drawerToggle}
                 sx={{
                     '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        background: theme.palette.background.default,
+                        width: appDrawerWidth,
+                        backgroundColor: '#16012D',
+                        backgroundImage: 'radial-gradient(ellipse at top, rgba(255, 77, 157, .1), transparent)',
                         color: theme.palette.text.primary,
                         borderRight: 'none',
                         [theme.breakpoints.up('md')]: {
-                            top: '88px'
+                            top: '100px',
+                            left: '0px'
                         }
                     }
                 }}

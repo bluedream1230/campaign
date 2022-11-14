@@ -20,14 +20,14 @@ export const theme = (customization) => {
         colors: color,
         heading: color.grey900,
         paper: color.paper,
-        backgroundDefault: color.paper,
-        background: color.primaryLight,
-        darkTextPrimary: color.grey700,
-        darkTextSecondary: color.grey500,
-        textDark: color.grey900,
-        menuSelected: color.secondaryDark,
-        menuSelectedBack: color.secondaryLight,
-        divider: color.grey200,
+        backgroundDefault: '#16012D',
+        background: '#16012D',
+        darkTextPrimary: '#B9B9B9',
+        darkTextSecondary: '#04B4DD',
+        textDark: '#04B4DD',
+        menuSelected: '#04B4DD',
+        menuSelectedBack: '#360068',
+        divider: '#821EF0',
         customization
     };
 

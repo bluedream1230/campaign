@@ -71,19 +71,21 @@ export default function themeTypography(theme) {
             '& > label': {
                 top: 23,
                 left: 0,
-                color: theme.grey500,
+                color: 'grey',
                 '&[data-shrink="false"]': {
                     top: 5
                 }
             },
             '& > div > input': {
-                padding: '30.5px 14px 11.5px !important'
+                padding: '30.5px 14px 11.5px !important',
+                backgroundColor: '#360068'
             },
             '& legend': {
                 display: 'none'
             },
             '& fieldset': {
-                top: 0
+                top: 0,
+                borderColor: 'white'
             }
         },
         mainContent: {
@@ -91,9 +93,9 @@ export default function themeTypography(theme) {
             width: '100%',
             minHeight: 'calc(100vh - 88px)',
             flexGrow: 1,
-            padding: '20px',
+            padding: '70px',
             marginTop: '88px',
-            marginRight: '20px',
+            // marginRight: '20px',
             borderRadius: `${theme?.customization?.borderRadius}px`
         },
         menuCaption: {

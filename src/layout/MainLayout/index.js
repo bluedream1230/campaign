@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
+import { AppBar, Box, CssBaseline, Divider, Toolbar, useMediaQuery } from '@mui/material';
 
 // project imports
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
@@ -12,11 +12,12 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Customization from '../Customization';
 import navigation from 'menu-items';
-import { drawerWidth } from 'store/constant';
+import { drawerWidth, appDrawerWidth } from 'store/constant';
 import { SET_MENU } from 'store/actions';
 
 // assets
 import { IconChevronRight } from '@tabler/icons';
+import { padding } from '@mui/system';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -29,18 +30,25 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
             duration: theme.transitions.duration.leavingScreen
         }),
         [theme.breakpoints.up('md')]: {
-            marginLeft: -(drawerWidth - 20),
-            width: `calc(100% - ${drawerWidth}px)`
+            marginLeft: -(appDrawerWidth - 20),
+            width: `calc(100% - ${appDrawerWidth}px)`,
+            padding: '70px'
         },
         [theme.breakpoints.down('md')]: {
             marginLeft: '20px',
-            width: `calc(100% - ${drawerWidth}px)`,
-            padding: '16px'
+            width: `calc(100% - ${appDrawerWidth}px)`,
+            padding: '70px'
         },
         [theme.breakpoints.down('sm')]: {
             marginLeft: '10px',
-            width: `calc(100% - ${drawerWidth}px)`,
-            padding: '16px',
+            width: `calc(100% - ${appDrawerWidth}px)`,
+            padding: '70px',
+            marginRight: '10px'
+        },
+        [theme.breakpoints.up('lg')]: {
+            marginLeft: -(appDrawerWidth - 20),
+            width: `calc(100% - ${appDrawerWidth}px)`,
+            padding: '70px',
             marginRight: '10px'
         }
     }),
@@ -52,16 +60,17 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
         marginLeft: 0,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        width: `calc(100% - ${drawerWidth}px)`,
+        width: `calc(100% - ${appDrawerWidth}px)`,
         [theme.breakpoints.down('md')]: {
-            marginLeft: '20px'
+            marginLeft: '20px',
+            padding: '70px'
         },
         [theme.breakpoints.down('sm')]: {
-            marginLeft: '10px'
+            marginLeft: '10px',
+            padding: '70px'
         }
     })
 }));
-
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = () => {
@@ -91,21 +100,28 @@ const MainLayout = () => {
                 elevation={0}
                 sx={{
                     bgcolor: theme.palette.background.default,
-                    transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+                    transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
+                    backgroundImage:
+                        'radial-gradient(circle at left, rgba(255, 77, 157, .1), transparent), radial-gradient(circle at center, rgba(255, 77, 157, .1), transparent)'
                 }}
             >
                 <Toolbar>
                     <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
                 </Toolbar>
+                <Divider sx={{ opacity: '.3' }} />
             </AppBar>
 
             {/* drawer */}
             <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
 
             {/* main content */}
-            <Main theme={theme} open={leftDrawerOpened}>
+            <Main
+                theme={theme}
+                open={leftDrawerOpened}
+                sx={{ backgroundImage: 'radial-gradient(closest-side, rgba(22, 1, 45, .2), rgba(255, 77, 157, .1), rgba(22, 1, 45, .2))' }}
+            >
                 {/* breadcrumb */}
-                <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
+                {/* <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign /> */}
                 <Outlet />
             </Main>
             <Customization />
