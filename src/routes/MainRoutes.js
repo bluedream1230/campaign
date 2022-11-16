@@ -8,6 +8,7 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 const DashbaordSingleReportView = Loadable(lazy(() => import('views/dashboard/SingleReport')));
 const LaunchMainView = Loadable(lazy(() => import('views/launch')));
+const LaunchGameView = Loadable(lazy(() => import('views/launch/games')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -28,12 +29,7 @@ const MainRoutes = {
                 {
                     path: 'default',
                     element: <DashboardDefault />
-                }
-            ]
-        },
-        {
-            path: 'dashboard',
-            children: [
+                },
                 {
                     path: 'single-report',
                     element: <DashbaordSingleReportView />
@@ -46,6 +42,10 @@ const MainRoutes = {
                 {
                     path: 'index',
                     element: <LaunchMainView />
+                },
+                {
+                    path: 'games/index',
+                    element: <LaunchGameView />
                 }
             ]
         }

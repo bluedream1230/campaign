@@ -69,16 +69,17 @@ export default function themeTypography(theme) {
             marginTop: 1,
             marginBottom: 1,
             '& > label': {
-                top: 23,
+                top: -5,
                 left: 0,
-                color: 'grey',
+                color: '#e0e0e0',
                 '&[data-shrink="false"]': {
                     top: 5
                 }
             },
             '& > div > input': {
-                padding: '30.5px 14px 11.5px !important',
-                backgroundColor: '#360068'
+                padding: '20px 14px 20px !important',
+                backgroundColor: '#360068',
+                color: 'white'
             },
             '& legend': {
                 display: 'none'
