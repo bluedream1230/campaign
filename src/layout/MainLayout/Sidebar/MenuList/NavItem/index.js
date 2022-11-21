@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -70,7 +71,8 @@ const NavItem = ({ item, level }) => {
             sx={{
                 borderRadius: `${customization.borderRadius}px`,
                 mb: 0.5,
-                alignItems: 'flex-start',
+                flexDirection: `${customization.isCollapse ? 'column' : 'row'}`,
+                alignItems: `${customization.isCollapse ? 'center' : 'flex-start'}`,
                 backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
                 py: level > 1 ? 1 : 1.25,
                 pl: `${level * 24}px`
@@ -78,7 +80,11 @@ const NavItem = ({ item, level }) => {
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
-            <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
+            <ListItemIcon
+                sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36, justifyContent: `${customization.isCollapse ? 'center' : 'left'}` }}
+            >
+                {itemIcon}
+            </ListItemIcon>
             <ListItemText
                 primary={
                     <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">

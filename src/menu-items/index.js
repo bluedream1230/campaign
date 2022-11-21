@@ -1,4 +1,4 @@
-import { ReactComponent as ToogleIcon } from '../assets/images/hamberg.svg';
+/* eslint-disable no-unused-vars */
 import { ReactComponent as DashboardIcon } from '../assets/images/dashboad-icon.svg';
 import { ReactComponent as LaunchIcon } from '../assets/images/Launch-icon.svg';
 import { ReactComponent as CampaignIcon } from '../assets/images/Campaigns-icon.svg';
@@ -70,14 +70,14 @@ const menuItem = {
                     id: 'single-campaign',
                     title: 'Single Campaign',
                     type: 'item',
-                    url: '/dashboard/single-campaign',
+                    url: '/campaigns/information',
                     breadcrumbs: false
                 },
                 {
-                    id: 'view-performance',
+                    id: 'performance',
                     title: 'View Performance',
                     type: 'item',
-                    url: '/dashboard/view-performance',
+                    url: '/campaigns/performance',
                     breadcrumbs: false
                 }
             ]
@@ -86,7 +86,7 @@ const menuItem = {
             id: 'prizes',
             title: 'Prizes',
             type: 'item',
-            url: '/prizes',
+            url: '/prizes/index',
             icon: PrizeIcon,
             breadcrumbs: false
         },
@@ -94,7 +94,7 @@ const menuItem = {
             id: 'games',
             title: 'Games',
             type: 'item',
-            url: '/games',
+            url: '/games/index',
             icon: GameIcon,
             breadcrumbs: false
         },
@@ -102,7 +102,7 @@ const menuItem = {
             id: 'users',
             title: 'Users',
             type: 'item',
-            url: '/users',
+            url: '/users/index',
             icon: UserIcon,
             breadcrumbs: false
         },
@@ -125,7 +125,7 @@ const logout = {
             id: 'logout',
             title: 'Logout',
             type: 'item',
-            url: '/logout',
+            url: '/auth/login',
             icon: LogoutIcon,
             breadcrumbs: false
         }

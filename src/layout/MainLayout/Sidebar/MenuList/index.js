@@ -1,14 +1,10 @@
+/* eslint-disable no-unused-vars */
 // material-ui
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase } from '@mui/material';
 // project imports
 import NavGroup from './NavGroup';
 import { menuItems, logoutItem } from 'menu-items';
-
-// assets
-import { IconMenu2 } from '@tabler/icons';
-// ==============================|| SIDEBAR MENU LIST ||============================== //
 
 const MenuList = () => {
     const navItems = menuItems.items.map((item) => {

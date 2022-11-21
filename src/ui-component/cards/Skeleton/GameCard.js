@@ -2,6 +2,9 @@ import * as React from 'react';
 import { CardActionArea, Box, Grid, Card, CardActions, CardContent, CardMedia, Button, Typography, SvgIcon, Checkbox } from '@mui/material';
 import { East, CheckCircleRounded, PanoramaFishEyeRounded } from '@mui/icons-material';
 import { withStyles, makeStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+
+const LaunchSummaryView = React.forwardRef((props, ref) => <RouterLink ref={ref} to="/launch/summary/index" {...props} role={undefined} />);
 
 export const FiCard = withStyles({
     root: {
@@ -78,18 +81,25 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard(props) {
     const classes = useStyles();
+    const [selected, setSelected] = React.useState(false);
 
     const handlePlay = () => {
-        console.log('Play now: ', props.href);
+        console.log('Play now: ', props.href, props.card_name);
+        //TODO: Play game
+    };
+
+    const handleClick = () => {
+        setSelected(!selected);
         //TODO: Play game
     };
 
     return (
-        <Box>
+        <Box onClick={handleClick} sx={{ width: '360px', paddingLeft: '50px' }} component={LaunchSummaryView} to="/launch/summary/index">
             <Grid container direction="column">
                 <Grid item>
                     <FiCard className={classes.card} sx={{ height: '248px', cursor: 'pointer' }}>
                         <Checkbox
+                            checked={selected}
                             icon={<PanoramaFishEyeRounded sx={{ color: 'white' }} />}
                             checkedIcon={<CheckCircleRounded sx={{ color: '#02DF6A' }} />}
                             sx={{ zIndex: 10, color: 'white', position: 'absolute', top: '0px', right: '0px' }}

@@ -78,8 +78,13 @@ export default function themeTypography(theme) {
             },
             '& > div > input': {
                 padding: '20px 14px 20px !important',
-                backgroundColor: '#360068',
-                color: 'white'
+                backgroundColor: 'transparent !important',
+                color: '#FFFFFF'
+            },
+            '& > div': {
+                padding: '0px !important',
+                backgroundColor: 'transparent !important',
+                color: '#FFFFFF'
             },
             '& legend': {
                 display: 'none'
@@ -87,6 +92,31 @@ export default function themeTypography(theme) {
             '& fieldset': {
                 top: 0,
                 borderColor: 'white'
+            },
+            '& > div > textarea': {
+                padding: '20px 14px 20px !important',
+                backgroundColor: 'transparent !important',
+                color: '#FFFFFF'
+            },
+            '& > div > div > button': {
+                marginRight: '0px'
+            },
+            //Autocomplete combox
+            '& > div > div': {
+                backgroundColor: 'transparent !important',
+                color: '#FFFFFF'
+            },
+            '& > div > div > input': {
+                backgroundColor: 'transparent !important',
+                color: '#FFFFFF'
+            },
+            '& > div > label': {
+                top: -5,
+                left: 0,
+                color: '#e0e0e0',
+                '&[data-shrink="false"]': {
+                    top: 5
+                }
             }
         },
         mainContent: {

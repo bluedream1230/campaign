@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Suspense } from 'react';
 
 // project imports

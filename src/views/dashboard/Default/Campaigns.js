@@ -1,24 +1,14 @@
 /* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 
-// project imports
-import BajajAreaChartCard from './BajajAreaChartCard';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
 
-// assets
-import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
-import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-
-// ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 const CampaignsList = [
     {
         Status: 'Active',
@@ -69,56 +59,42 @@ const Campaigns = ({ isLoading }) => {
                 <Grid container direction="column">
                     <Grid item>
                         <Grid container alignItems="center" justifyContent="space-between">
-                            <Grid item>
+                            <Grid item xs={2}>
                                 <Typography variant="subtitle1" color="inherit">
                                     Status
                                 </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="subtitle1" color="inherit">
-                                    Name
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="subtitle1" color="inherit">
-                                    Game
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="subtitle1" color="inherit">
-                                    Users
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="subtitle1" color="inherit">
-                                    Winner
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item>
-                        <Grid container alignItems="center" justifyContent="space-between">
-                            <Grid item>
                                 <Typography variant="subtitle1" color="#43CC83" fontWeight={'600'} fontSize="20px">
                                     {item.Status}
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={3}>
+                                <Typography variant="subtitle1" color="inherit">
+                                    Name
+                                </Typography>
                                 <Typography variant="subtitle1" color="#FFFFFF" fontWeight={'600'} fontSize="20px">
                                     {item.Name}
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={3}>
+                                <Typography variant="subtitle1" color="inherit">
+                                    Game
+                                </Typography>
                                 <Typography variant="subtitle1" color="#FF4C9D" fontWeight={'600'} fontSize="20px">
                                     {item.Game}
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={3}>
+                                <Typography variant="subtitle1" color="inherit">
+                                    Users
+                                </Typography>
                                 <Typography variant="subtitle1" color="#FFFFFF" fontWeight={'600'} fontSize="20px">
                                     {item.Users}
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={1}>
+                                <Typography variant="subtitle1" color="inherit">
+                                    Winner
+                                </Typography>
                                 <Typography variant="subtitle1" color="#04B4DD" fontWeight={'600'} fontSize="20px">
                                     {item.Winner}
                                 </Typography>
@@ -136,13 +112,13 @@ const Campaigns = ({ isLoading }) => {
             {isLoading ? (
                 <SkeletonPopularCard />
             ) : (
-                <MainCard content={false} sx={{ backgroundColor: '#360068' }}>
+                <MainCard content={false} sx={{ backgroundColor: '#2E094E' }}>
                     <CardContent>
                         <Grid container spacing={gridSpacing}>
                             <Grid item xs={12}>
                                 <Grid container alignContent="center" justifyContent="space-between">
                                     <Grid item>
-                                        <Typography variant="h2" color="white">
+                                        <Typography variant="h1" color="white">
                                             Your Campaigns
                                         </Typography>
                                     </Grid>
@@ -182,12 +158,6 @@ const Campaigns = ({ isLoading }) => {
                             {campaignTable}
                         </Grid>
                     </CardContent>
-                    {/* <CardActions sx={{ p: 1.25, pt: 0, justifyContent: 'center' }}>
-                        <Button size="small" disableElevation>
-                            View All
-                            <ChevronRightOutlinedIcon />
-                        </Button>
-                    </CardActions> */}
                 </MainCard>
             )}
         </>

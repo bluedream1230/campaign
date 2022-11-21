@@ -182,6 +182,57 @@ export default function componentStyleOverrides(theme) {
                     background: theme.colors?.grey700
                 }
             }
+        },
+        MuiAutocomplete: {
+            styleOverrides: {
+                root: {
+                    width: '100%'
+                }
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#360068AA'
+                }
+            }
+        },
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    width: '100%'
+                }
+            }
+        },
+        MuiPickersCalendarHeader: {
+            styleOverrides: {
+                root: {
+                    flexDirection: 'row-reverse',
+                    color: 'white',
+                    '& .MuiPickersArrowSwitcher-root': {
+                        '& .MuiIconButton-edgeStart': {
+                            position: 'absolute',
+                            right: '20px',
+                            color: 'white'
+                        },
+                        '& .MuiIconButton-edgeEnd': {
+                            color: 'white'
+                        },
+                        '& .css-xb7uwb-MuiPickersArrowSwitcher-spacer': {
+                            width: '45px'
+                        }
+                    }
+                }
+            }
+        },
+        MuiPickersPopper: {
+            styleOverrides: {
+                root: {
+                    maxWidth: '650px',
+                    width: '100%',
+                    transform: 'translate(1130px, 340px) !important'
+                }
+            }
         }
     };
 }

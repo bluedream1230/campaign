@@ -1,25 +1,25 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, useMediaQuery } from '@mui/material';
-
-// third-party
+import { Box, Drawer, SvgIcon, useMediaQuery, Divider } from '@mui/material';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { BrowserView, MobileView } from 'react-device-detect';
+import { BrowserView } from 'react-device-detect';
+import { useDispatch, useSelector } from 'react-redux';
 
-// project imports
 import { MenuList, LogoutComponent } from './MenuList';
-import LogoSection from '../LogoSection';
-import { drawerWidth, appDrawerWidth, quaterMaxWidth } from 'store/constant';
-
-import { Divider } from '@mui/material';
-
-// ==============================|| SIDEBAR DRAWER ||============================== //
+import { SET_COLLAPSE } from 'store/actions';
+import { appDrawerWidth } from 'store/constant';
+import DehazeOutlinedIcon from '@mui/icons-material/DehazeOutlined';
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const isCollapse = useSelector((state) => state.customization.isCollapse);
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+
+    const handleClick = () => {
+        dispatch({ type: SET_COLLAPSE, isCollapse: !isCollapse });
+    };
 
     const drawer = (
         <>
@@ -32,6 +32,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                         paddingRight: '16px'
                     }}
                 >
+                    <SvgIcon component={DehazeOutlinedIcon} onClick={handleClick} sx={{ marginLeft: '24px', color: '#04B4DD' }} />
                     <MenuList />
                     <Divider sx={{ mt: 0.25, mb: 1.25, opacity: 0.3, paddingTop: '90px' }} />
                     <LogoutComponent />
@@ -47,7 +48,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             component="nav"
             sx={{
                 flexShrink: { md: 0 },
-                width: matchUpMd ? appDrawerWidth : 'auto'
+                width: matchUpMd ? (!isCollapse ? '320px' : '100px') : 'auto'
             }}
             aria-label="mailbox folders"
         >
@@ -59,14 +60,16 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                 onClose={drawerToggle}
                 sx={{
                     '& .MuiDrawer-paper': {
-                        width: appDrawerWidth,
+                        width: !isCollapse ? appDrawerWidth : '100px',
                         backgroundColor: '#16012D',
                         backgroundImage: 'radial-gradient(ellipse at top, rgba(255, 77, 157, .1), transparent)',
                         color: theme.palette.text.primary,
                         borderRight: 'none',
                         [theme.breakpoints.up('md')]: {
                             top: '100px',
-                            left: '0px'
+                            left: '0px',
+                            transform: 'none !important',
+                            visibility: 'visible !important'
                         }
                     }
                 }}

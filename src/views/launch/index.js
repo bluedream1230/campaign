@@ -1,50 +1,37 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
-
-// material-ui
-import { Avatar, Box, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, TextField, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Link as RouterLink } from 'react-router-dom';
 import { useState } from 'react';
-import DateFnsUtils from '@date-io/date-fns';
-import { CDatePicker } from '@coreui/react-pro';
-import { Alert } from '@coreui/react';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
+import { Button, CardContent, Grid, TextField, Typography, Select } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers';
 
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
-import { Formik } from 'formik';
-
-//css imports
-import '@coreui/coreui/dist/css/coreui.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Loadable from 'ui-component/Loadable';
-import { Link as RouterLink } from 'react-router-dom';
+import PrizeSelect from 'ui-component/PrizeSelect';
 
 const LaunchGameView = React.forwardRef((props, ref) => <RouterLink ref={ref} to="/launch/games/index" {...props} role={undefined} />);
+const styles = {
+    root: {
+        'flex-direction': 'row-reverse'
+    }
+};
 
 const LaunchPage = () => {
     const theme = useTheme();
-    const [selectedDate, handleDateChange] = useState(new Date());
-    const today = Date();
-    const [age, setAge] = React.useState('');
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
+    const [value, setValue] = React.useState(null);
+
     return (
-        <MainCard sx={{ backgroundColor: '#360068' }}>
+        <MainCard sx={{ backgroundColor: '#2E094E' }}>
             <CardContent>
-                {/* <Formik>
-                    {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => ( */}
                 <form>
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs={12}>
                             <Grid container alignContent="center" justifyContent="space-between">
                                 <Grid item>
-                                    <Typography variant="h2" color="white">
+                                    <Typography variant="h1" color="white">
                                         Select Name & Launch Date
                                     </Typography>
                                 </Grid>
@@ -65,7 +52,18 @@ const LaunchPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Grid container>
-                                <CDatePicker footer locale="en-US" />
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DatePicker
+                                        label="Launch Date"
+                                        value={value}
+                                        onChange={(newValue) => {
+                                            setValue(newValue);
+                                        }}
+                                        renderInput={(params) => (
+                                            <TextField {...params} sx={{ ...theme.typography.customInput }} fullWidth />
+                                        )}
+                                    />
+                                </LocalizationProvider>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -74,7 +72,7 @@ const LaunchPage = () => {
                         <Grid item xs={12}>
                             <Grid container alignContent="center" justifyContent="space-between">
                                 <Grid item>
-                                    <Typography variant="h2" color="white">
+                                    <Typography variant="h1" color="white">
                                         Select or Create Prize
                                     </Typography>
                                 </Grid>
@@ -82,25 +80,7 @@ const LaunchPage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container>
-                                <FormControl fullWidth>
-                                    {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
-                                    <TextField
-                                        // labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={age}
-                                        label="Age"
-                                        onChange={handleChange}
-                                        sx={{ ...theme.typography.customInput }}
-                                        select
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
-                                    </TextField>
-                                </FormControl>
+                                <PrizeSelect />
                             </Grid>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -157,7 +137,7 @@ const LaunchPage = () => {
                         <Grid item xs={12}>
                             <Grid container alignContent="center" justifyContent="space-between">
                                 <Grid item>
-                                    <Typography variant="h2" color="white">
+                                    <Typography variant="h1" color="white">
                                         Select Audiance Bucket
                                     </Typography>
                                 </Grid>
@@ -165,44 +145,28 @@ const LaunchPage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container>
-                                <FormControl fullWidth>
-                                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={age}
-                                        label="Age"
-                                        onChange={handleChange}
-                                        sx={{ ...theme.typography.customInput }}
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
-                                    </Select>
-                                </FormControl>
+                                <PrizeSelect />
                             </Grid>
                         </Grid>
                         <Grid item xs={3}>
-                            <Box sx={{ '& button': { m: 1 } }}>
-                                <div>
-                                    <Button
-                                        component={LaunchGameView}
-                                        to="/launch/games/index"
-                                        size="small"
-                                        sx={{ backgroundColor: 'red' }}
-                                    >
-                                        Next
-                                    </Button>
-                                </div>
-                            </Box>
+                            <Button
+                                component={LaunchGameView}
+                                to="/launch/games/index"
+                                variant="contained"
+                                sx={{
+                                    borderRadius: '9.8',
+                                    backgroundColor: '#FF0676',
+                                    width: '100px',
+                                    height: '40px',
+                                    fontSize: '16px',
+                                    fontWeight: '700'
+                                }}
+                            >
+                                Next
+                            </Button>
                         </Grid>
                     </Grid>
                 </form>
-                {/* )} */}
-                {/* </Formik> */}
             </CardContent>
         </MainCard>
     );

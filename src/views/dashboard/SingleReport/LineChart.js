@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { CardContent, Grid, Typography } from '@mui/material';
+
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
@@ -60,13 +62,13 @@ const LineChartData = () => {
 };
 const LineChart = () => {
     return (
-        <MainCard content={false} sx={{ backgroundColor: '#360068' }}>
+        <MainCard content={false} sx={{ backgroundColor: '#2E094E' }}>
             <CardContent>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12}>
                         <Grid container alignContent="center" justifyContent="space-between">
                             <Grid item>
-                                <Typography variant="h2" color="white">
+                                <Typography variant="h1" color="white">
                                     User supplied data
                                 </Typography>
                             </Grid>

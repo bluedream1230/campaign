@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -62,7 +63,8 @@ const NavCollapse = ({ menu, level }) => {
                 sx={{
                     borderRadius: `${customization.borderRadius}px`,
                     mb: 0.5,
-                    alignItems: 'flex-start',
+                    flexDirection: `${customization.isCollapse ? 'column' : 'row'}`,
+                    alignItems: `${customization.isCollapse ? 'center' : 'flex-start'}`,
                     backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
                     py: level > 1 ? 1 : 1.25,
                     pl: `${level * 24}px`
@@ -70,7 +72,11 @@ const NavCollapse = ({ menu, level }) => {
                 // selected={selected === menu.id}
                 onClick={handleClick}
             >
-                <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>
+                <ListItemIcon
+                    sx={{ my: 'asuto', minWidth: !menu.icon ? 18 : 36, justifyContent: `${customization.isCollapse ? 'center' : 'left'}` }}
+                >
+                    {menuIcon}
+                </ListItemIcon>
                 <ListItemText
                     primary={
                         <Typography variant={selected === menu.id ? 'h5' : 'body1'} color="inherit" sx={{ my: 'auto' }}>
@@ -85,33 +91,37 @@ const NavCollapse = ({ menu, level }) => {
                         )
                     }
                 />
-                {open ? (
+                {customization.isCollapse ? (
+                    <></>
+                ) : open ? (
                     <IconChevronUp stroke={1.5} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
                 ) : (
                     <IconChevronDown stroke={1.5} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
                 )}
             </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List
-                    component="div"
-                    disablePadding
-                    sx={{
-                        position: 'relative',
-                        '&:after': {
-                            content: "''",
-                            position: 'absolute',
-                            left: '32px',
-                            top: 0,
-                            height: '100%',
-                            width: '1px',
-                            opacity: 1,
-                            background: theme.palette.primary.light
-                        }
-                    }}
-                >
-                    {menus}
-                </List>
-            </Collapse>
+            {!customization.isCollapse && (
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List
+                        component="div"
+                        disablePadding
+                        sx={{
+                            position: 'relative',
+                            '&:after': {
+                                content: "''",
+                                position: 'absolute',
+                                left: '32px',
+                                top: 0,
+                                height: '100%',
+                                width: '1px',
+                                opacity: 1,
+                                background: theme.palette.primary.light
+                            }
+                        }}
+                    >
+                        {menus}
+                    </List>
+                </Collapse>
+            )}
         </>
     );
 };

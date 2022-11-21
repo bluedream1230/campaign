@@ -1,11 +1,8 @@
+/* eslint-disable no-unused-vars */
 // material-ui
-import { Grid, Typography, Box } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
-// project imports
-import EarningCard from 'ui-component/cards/Skeleton/EarningCard';
 import ImgMediaCard from 'ui-component/cards/Skeleton/GameCard';
-import { gridSpacing } from 'store/constant';
-// ==============================|| SAMPLE PAGE ||============================== //
 
 const SelectGamePage = () => {
     const tempcard = [
@@ -72,26 +69,28 @@ const SelectGamePage = () => {
     ];
     return (
         <>
-            <h2>Select Games</h2>
             <Grid container spacing={5}>
                 <Grid item xs={12}>
-                    <Grid container spacing={5}>
-                        {tempcard.map((item, index) => {
-                            return (
-                                <Grid item lg={4} md={6} sm={6} xs={12}>
-                                    <div style={{}}>
-                                        <Box>
-                                            <ImgMediaCard
-                                                card_name={item.name}
-                                                card_image={item.icon}
-                                                key={index}
-                                                href={item.href}
-                                            ></ImgMediaCard>
-                                        </Box>
-                                    </div>
-                                </Grid>
-                            );
-                        })}
+                    <Grid item xs={12} style={{ paddingRight: '24px', paddingLeft: '44px' }}>
+                        <Grid item sx={{ paddingBottom: '45px' }}>
+                            <Typography variant="h1" color="white">
+                                Select Games
+                            </Typography>
+                        </Grid>
+                        <Grid container spacing={5}>
+                            {tempcard.map((item, index) => {
+                                return (
+                                    <Grid item lg={3} md={6} sm={6} xs={12}>
+                                        <ImgMediaCard
+                                            card_name={item.name}
+                                            card_image={item.icon}
+                                            key={index}
+                                            href={item.href}
+                                        ></ImgMediaCard>
+                                    </Grid>
+                                );
+                            })}
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

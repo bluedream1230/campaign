@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 // material-ui
 import { styled } from '@mui/material/styles';
 
-// ==============================|| AUTHENTICATION 1 WRAPPER ||============================== //
+import BackgroundImage from 'assets/images/login-screen.jpg';
 
-const AuthWrapper1 = styled('div')(({ theme }) => ({
-    backgroundColor: theme.palette.primary.light,
+const AuthWrapper1 = styled('div')(({}) => ({
+    backgroundImage: `url(${BackgroundImage})`,
     minHeight: '100vh'
 }));
 

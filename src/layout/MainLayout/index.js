@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
@@ -7,17 +8,10 @@ import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Divider, Toolbar, useMediaQuery } from '@mui/material';
 
 // project imports
-import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Customization from '../Customization';
-import navigation from 'menu-items';
-import { drawerWidth, appDrawerWidth } from 'store/constant';
+import { appDrawerWidth } from 'store/constant';
 import { SET_MENU } from 'store/actions';
-
-// assets
-import { IconChevronRight } from '@tabler/icons';
-import { padding } from '@mui/system';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -29,8 +23,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
         }),
-        [theme.breakpoints.up('md')]: {
-            marginLeft: -(appDrawerWidth - 20),
+        [theme.breakpoints.down('lg')]: {
+            marginLeft: '0px',
             width: `calc(100% - ${appDrawerWidth}px)`,
             padding: '70px'
         },
@@ -118,13 +112,13 @@ const MainLayout = () => {
             <Main
                 theme={theme}
                 open={leftDrawerOpened}
-                sx={{ backgroundImage: 'radial-gradient(closest-side, rgba(22, 1, 45, .2), rgba(255, 77, 157, .1), rgba(22, 1, 45, .2))' }}
+                sx={{
+                    position: 'relative',
+                    backgroundImage: 'radial-gradient(closest-side, rgba(22, 1, 45, .2), rgba(255, 77, 157, .1), rgba(22, 1, 45, .2))'
+                }}
             >
-                {/* breadcrumb */}
-                {/* <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign /> */}
                 <Outlet />
             </Main>
-            <Customization />
         </Box>
     );
 };
